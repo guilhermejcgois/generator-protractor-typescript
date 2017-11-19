@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Guilherme Gois",
+      "authorEmail": "guijocargo@gmail.com",
+      "authorUrl": ""
+    }
+  }
+}
