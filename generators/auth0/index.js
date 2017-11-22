@@ -10,7 +10,8 @@ module.exports = class extends Generator {
       yosay(
         'Welcome to the fantastic ' +
           chalk.red('generator-protractor-typescript') +
-          ' generator!'
+          ' ' +
+          chalk.yellow('for awesome auth0 page object!')
       )
     );
 
@@ -36,7 +37,6 @@ module.exports = class extends Generator {
     ];
 
     return this.prompt(prompts).then(props => {
-      // To access props later use this.props.someAnswer;
       this.props = props;
     });
   }
