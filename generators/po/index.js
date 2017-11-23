@@ -20,13 +20,13 @@ module.exports = class extends Generator {
           type: 'input',
           name: 'className',
           message: 'What is the class name?',
-          default: 'AppPage'
+          default: 'App'
         },
         {
           type: 'input',
           name: 'fileName',
           message: 'What is the file name?',
-          default: 'app'
+          default: 'app.po'
         },
         {
           type: 'input',
@@ -64,7 +64,8 @@ module.exports = class extends Generator {
         {
           type: 'input',
           name: 'elementSelector',
-          message: 'Which is the element selector?'
+          message: 'Which is the element selector?',
+          default: 'selector'
         },
         {
           type: 'confirm',
@@ -125,8 +126,13 @@ module.exports = class extends Generator {
       process: function(content) {
         let newContent = content
           .toString()
-          .split('/* Elements Selector */')
-          .join(selectors.join('\n\t'));
+          .split('/* Class Name */')
+          .join(props.file.className);
+
+        if (!props.elementsInfo.length) {
+          return newContent;
+        }
+
         newContent = newContent
           .toString()
           .split('/* Members Declaration */')
@@ -137,8 +143,8 @@ module.exports = class extends Generator {
           .join(constructorStatements.join('\n\t\t'));
         newContent = newContent
           .toString()
-          .split('/* Class Name */')
-          .join(props.file.className);
+          .split('/* Elements Selector */')
+          .join(selectors.join('\n\t'));
         return newContent;
       }
     };
@@ -150,7 +156,5 @@ module.exports = class extends Generator {
     );
   }
 
-  install() {
-    console.log(this.props);
-  }
+  install() {}
 };
