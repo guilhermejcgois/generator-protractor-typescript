@@ -11,7 +11,8 @@ module.exports = class extends Generator {
       yosay(
         'Welcome to the fantastic ' +
           chalk.red('generator-protractor-typescript') +
-          ' generator!'
+          ' ' +
+          chalk.yellow('for awesome page objects!')
       )
     );
 

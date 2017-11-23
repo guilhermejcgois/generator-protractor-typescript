@@ -10,16 +10,31 @@ module.exports = class extends Generator {
       yosay(
         'Welcome to the fantastic ' +
           chalk.red('generator-protractor-typescript') +
-          ' generator!'
+          ' ' +
+          chalk.yellow('for awesome protractor setup!')
       )
     );
 
+    this.log(chalk.yellow('Note that all paths requested are relative to project root.'));
+
     const prompts = [
       {
-        type: 'confirm',
-        name: 'someAnswer',
-        message: 'Would you like to enable this option?',
-        default: true
+        type: 'input',
+        name: 'initialUrl',
+        message: 'Which is the initial app url?',
+        default: '/'
+      },
+      {
+        type: 'input',
+        name: 'baseTsconfigPath',
+        message: 'Where are your tsconfig file?',
+        default: 'tsconfig.json'
+      },
+      {
+        type: 'input',
+        name: 'outDirPath',
+        message: 'Where are your tsconfig file? (relative path from project root)',
+        default: 'out-tsc/'
       }
     ];
 
@@ -30,10 +45,26 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
+    const props = this.props;
+    const copy = path =>
+      this.fs.copy(this.templatePath(path), this.destinationPath(path));
+
+    copy('protractor.conf.js');
+    copy('e2e/app.po.ts');
+
+    this.fs.copyTpl(
+      this.templatePath('e2e/app.e2e-spec.ts'),
+      this.destinationPath('e2e/app.e2e-spec.ts'),
+      {
+        projectName: 'abc',
+        initialUrl: props.initialUrl
+      }
     );
+
+    const tsConfigJson = this.fs.readJSON(this.templatePath('e2e/tsconfig.e2e.json'));
+    tsConfigJson.extends = `../${props.baseTsconfigPath}`;
+    tsConfigJson.compilerOptions.outDir = `../${props.outDirPath}e2e`;
+    this.fs.writeJSON(this.destinationPath('e2e/tsconfig.e2e.json'), tsConfigJson);
   }
 
   install() {
