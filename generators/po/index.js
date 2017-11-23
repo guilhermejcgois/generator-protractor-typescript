@@ -2,6 +2,7 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
+const strings = require('../../helpers/strings');
 
 module.exports = class extends Generator {
   prompting() {
@@ -105,11 +106,10 @@ module.exports = class extends Generator {
     const selectors = [];
     const declarations = [];
     const constructorStatements = [];
-    const firstLetter = s => fn => s.replace(/\b\w/g, l => l[fn]());
+
     props.elementsInfo.forEach(info => {
-      const element = firstLetter(info.elementName);
-      const elementVar = element('toLowerCase');
-      const elementConst = element('toUpperCase');
+      const elementVar = strings.firstToLower(info.elementName);
+      const elementConst = strings.capitalize(info.elementName);
       const uniqueElement = info.elementUniqueness;
       const elementType = uniqueElement ? 'ElementFinder' : 'ElementArrayFinder';
       const elementFindMethod = uniqueElement ? 'element' : 'element.all';

@@ -2,6 +2,7 @@
 const path = require('path');
 const assert = require('yeoman-assert');
 const helpers = require('yeoman-test');
+const strings = require('../helpers/strings');
 
 describe('protractor-typescript:po', () => {
   const defAnswers = {
@@ -21,38 +22,32 @@ describe('protractor-typescript:po', () => {
       .run(path.join(__dirname, '../generators/po'))
       .withPrompts(answers || {})
       .then(() => {
-        const firstLetter = s => fn => s.replace(/\b\w/g, l => l[fn]());
-        const [fileName, className, location, addElement] = (answers && [
-          answers.fileName || defAnswers.fileName,
-          answers.className || defAnswers.className,
-          answers.location || defAnswers.location,
-          answers.addElement || defAnswers.addElement
-        ]) || [
-          defAnswers.fileName,
-          defAnswers.className,
-          defAnswers.location,
-          defAnswers.addElement
-        ];
+        const fileName = (answers && answers.fileName) || defAnswers.fileName;
+        const className = (answers && answers.className) || defAnswers.className;
+        const location = (answers && answers.location) || defAnswers.location;
+        const addElement = (answers && answers.addElement) || defAnswers.addElement;
         const filePath = location + fileName + '.ts';
 
         assert.file(filePath);
         assert.fileContent(filePath, `export class ${className}Page {`);
 
         if (addElement) {
-          const [elementName, elementUniqueness, selectorType, elementSelector] = [
-            answers.elementName || defAnswers.elementName,
-            answers.elementUniqueness || defAnswers.elementUniqueness,
-            answers.selectorType || defAnswers.selectorType,
-            answers.elementSelector || defAnswers.elementSelector
-          ];
+          const elementName = (answers && answers.elementName) || defAnswers.elementName;
+          const elementUniqueness =
+            (answers && answers.elementUniqueness) || defAnswers.elementUniqueness;
+          const selectorType =
+            (answers && answers.selectorType) || defAnswers.selectorType;
+          const elementSelector =
+            (answers && answers.elementSelector) || defAnswers.elementSelector;
 
-          const element = firstLetter(elementName);
           const elementType = elementUniqueness ? 'ElementFinder' : 'ElementArrayFinder';
           const elementFindMethod = elementUniqueness ? 'element' : 'element.all';
-          const elementVar = element('toLowerCase');
+          const elementVar = strings.firstToLower(elementName);
           const byMethod = selectorType === 'by css' ? 'by.css' : 'by.linkText';
           const selector =
-            element('toUpperCase') + selectorType === 'by css' ? 'Selector' : 'LinkText';
+            strings.capitalize(elementName) + selectorType === 'by css'
+              ? 'Selector'
+              : 'LinkText';
           assert.fileContent(filePath, `const ${selector} = '${elementSelector}';`);
           assert.fileContent(filePath, `${elementVar}: ${elementType} = null;`);
           assert.fileContent(

@@ -15,11 +15,9 @@ describe('protractor-typescript:auth0', () => {
       .run(path.join(__dirname, '../generators/auth0'))
       .withPrompts(answers || {})
       .then(() => {
-        const [fileName, className, location] = (answers && [
-          answers.fileName || defAnswers.fileName,
-          answers.className || defAnswers.className,
-          answers.location || defAnswers.location
-        ]) || [defAnswers.fileName, defAnswers.className, defAnswers.location];
+        const fileName = (answers && answers.fileName) || defAnswers.fileName;
+        const className = (answers && answers.className) || defAnswers.className;
+        const location = (answers && answers.location) || defAnswers.location;
         const filePath = location + fileName + '.ts';
         assert.file(filePath);
         assert.fileContent(filePath, `export class ${className} {`);
