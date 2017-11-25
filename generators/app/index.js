@@ -39,7 +39,8 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'outDirPath',
-        message: 'Where are your tsconfig file? (relative path from project root)',
+        message:
+          'Where are the project output generated? (relative path from project root)',
         default: 'out-tsc/'
       }
     ];
