@@ -16,6 +16,103 @@ Then generate your new project:
 yo protractor-typescript
 ```
 
+
+
+## Generators
+
+Available generators:
+
+* [protractor-typescript](#app)
+* [protractor-typescript:auth0](#auth0-page-object)
+* [protractor-typescript:po](#page-object)
+
+### App
+Sets up protractor in existing project with a simple spec that only verifies if is possible to navigate to project initial URL. Also, a page object class is generated too with some nice methods working out the box.
+
+Question spoilers:
+```bash
+$ yo protractor-typescript
+
+     _-----_     ╭──────────────────────────╮
+    |       |    │ Welcome to the fantastic │
+    |--(o)--|    │ generator-protractor-typ │
+   `---------´   │    escript for awesome   │
+    ( _´U`_ )    │     protractor setup!    │
+    /___A___\   /╰──────────────────────────╯
+     |  ~  |     
+   __'.___.'__   
+ ´   `  |° ´ Y ` 
+
+Note that all paths requested are relative to project root.
+? Which is the initial app url? (/)
+? Which is the base app url? (http://localhost:4200/)
+? Where are your tsconfig file? (tsconfig.json)
+? Where are the project output generated? (relative path from project root) (out-tsc/)
+```
+
+### Auth0 Page Object
+Add a page object for Auth0 login form.
+
+Question spoilers:
+```bash
+$ yo protractor-typescript:auth0
+
+     _-----_     ╭──────────────────────────╮
+    |       |    │ Welcome to the fantastic │
+    |--(o)--|    │ generator-protractor-typ │
+   `---------´   │    escript for awesome   │
+    ( _´U`_ )    │    auth0 page object!    │
+    /___A___\   /╰──────────────────────────╯
+     |  ~  |     
+   __'.___.'__   
+ ´   `  |° ´ Y ` 
+
+? Would you like to change the class name? (Auth0Page)
+? Would you like to change the file name? (auth0.po)
+? Would you like to change the file location? (e2e/)
+```
+
+### Page Object
+Add a page object. Also, you can start your page object with the page element initialized.
+
+Question spoilers:
+```bash
+$ yo protractor-typescript:auth0
+
+     _-----_     ╭──────────────────────────╮
+    |       |    │ Welcome to the fantastic │
+    |--(o)--|    │ generator-protractor-typ │
+   `---------´   │ escript for awesome page │
+    ( _´U`_ )    │         objects!         │
+    /___A___\   /╰──────────────────────────╯
+     |  ~  |     
+   __'.___.'__   
+ ´   `  |° ´ Y ` 
+
+? What is the class name? (App) 
+? What is the file name? (app.po)
+? Would you like to change the file location? (e2e/app/)
+? Would you like to add an element to page object? (y/N)
+# If previous question is yes
+? What is the element name? (ElementName)
+? Is the element unique on the page? (Y/n)
+? How you pretend to query element? (Use arrow keys)
+❯ by css 
+  by link text
+? Which is the element selector? (selector)
+? Would you like to add another element to page object? (y/N)
+# If previous question is yes, ask again the 5 previous question
+```
+
+## Contribute
+
+> Section under construction
+
+## Changelog
+
+Recent changes can be viewed on Github on the [Releases Page](https://github.com/guilhermejcgois/generator-protractor-typescript/releases)
+
+
 ## Getting To Know Yeoman
 
  * Yeoman has a heart of gold.
