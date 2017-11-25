@@ -50,6 +50,7 @@
     "prepublish": "nsp check",
     "pretest": "eslint .",
     "precommit": "lint-staged",
+    "prepush": "npm test",
     "test": "jest --coverage"
   },
   "lint-staged": {
