@@ -6,6 +6,7 @@ const helpers = require('yeoman-test');
 fdescribe('generator-protractor-typescript:app', () => {
   const defAnswers = {
     initialUrl: '/',
+    baseUrl: 'http://localhost:4200/',
     baseTsconfigPath: 'tsconfig.json',
     outDirPath: 'out-tsc/'
   };
@@ -16,12 +17,14 @@ fdescribe('generator-protractor-typescript:app', () => {
       .withPrompts(answers || {})
       .then(() => {
         const initialUrl = (answers && answers.initialUrl) || defAnswers.initialUrl;
+        const baseUrl = (answers && answers.baseUrl) || defAnswers.baseUrl;
         const baseTsconfigPath =
           (answers && answers.baseTsconfigPath) || defAnswers.baseTsconfigPath;
         const outDirPath = (answers && answers.outDirPath) || defAnswers.outDirPath;
         const projectName = 'abc';
 
         assert.file('protractor.conf.js');
+        assert.fileContent('protractor.conf.js', `baseUrl: '${baseUrl}',`);
         assert.file('e2e/app.e2e-spec.ts');
         assert.fileContent(
           'e2e/app.e2e-spec.ts',

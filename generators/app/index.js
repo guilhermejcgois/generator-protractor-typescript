@@ -26,6 +26,12 @@ module.exports = class extends Generator {
       },
       {
         type: 'input',
+        name: 'baseUrl',
+        message: 'Which is the base app url?',
+        default: 'http://localhost:4200/'
+      },
+      {
+        type: 'input',
         name: 'baseTsconfigPath',
         message: 'Where are your tsconfig file?',
         default: 'tsconfig.json'
@@ -46,20 +52,17 @@ module.exports = class extends Generator {
 
   writing() {
     const props = this.props;
-    const copy = path =>
-      this.fs.copy(this.templatePath(path), this.destinationPath(path));
+    const copy = (fn, path, opt) =>
+      this.fs[fn](this.templatePath(path), this.destinationPath(path), opt);
 
-    copy('protractor.conf.js');
-    copy('e2e/app.po.ts');
-
-    this.fs.copyTpl(
-      this.templatePath('e2e/app.e2e-spec.ts'),
-      this.destinationPath('e2e/app.e2e-spec.ts'),
-      {
-        projectName: 'abc',
-        initialUrl: props.initialUrl
-      }
-    );
+    copy('copy', 'e2e/app.po.ts');
+    copy('copyTpl', 'e2e/app.e2e-spec.ts', {
+      projectName: 'abc',
+      initialUrl: props.initialUrl
+    });
+    copy('copyTpl', 'protractor.conf.js', {
+      baseUrl: props.baseUrl
+    });
 
     const tsConfigJson = this.fs.readJSON(this.templatePath('e2e/tsconfig.e2e.json'));
     tsConfigJson.extends = `../${props.baseTsconfigPath}`;
