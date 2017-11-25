@@ -3,7 +3,7 @@ const path = require('path');
 const assert = require('yeoman-assert');
 const helpers = require('yeoman-test');
 
-fdescribe('generator-protractor-typescript:app', () => {
+describe('generator-protractor-typescript:app', () => {
   const defAnswers = {
     initialUrl: '/',
     baseUrl: 'http://localhost:4200/',
