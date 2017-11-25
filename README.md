@@ -1,6 +1,19 @@
 # generator-protractor-typescript [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 > Generator for typescript projects that uses Protractor. Protractor is an end-to-end test framework for Angular and AngularJS applications. Protractor runs tests against your application running in a real browser, interacting with it as a user would.
 
+Table of Contents
+=================
+* [Installation](#installation)
+* [Generators](#generators)
+   * [App](#app)
+   * [Auth0 Page Object](#auth0-page-object)
+   * [Page Object](#page-object)
+* [Contribute](#contribute)
+* [Changelog](#changelog)
+* [Getting To Know Yeoman](#getting-to-know-yeoman)
+* [License](#license)
+
+
 ## Installation
 
 First, install [Yeoman](http://yeoman.io) and generator-protractor-typescript using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
