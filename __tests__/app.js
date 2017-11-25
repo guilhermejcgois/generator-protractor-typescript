@@ -43,4 +43,9 @@ fdescribe('generator-protractor-typescript:app', () => {
   };
 
   it('with default options', spec());
+
+  it(
+    'with custom options',
+    spec({ baseUrl: 'http://github.com', outDirPath: 'dist/github/e2e' })
+  );
 });
