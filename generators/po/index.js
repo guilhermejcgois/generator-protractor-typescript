@@ -116,11 +116,11 @@ module.exports = class extends Generator {
       const elementFindMethod = uniqueElement ? 'element' : 'element.all';
       const searchByLinkText = info.selectorType === 'by link text';
       const byMethod = searchByLinkText ? 'by.linkText' : 'by.css';
-      const selector = elementConst + searchByLinkText ? 'LinkText' : 'Selector';
+      const selector = elementConst + (searchByLinkText ? 'LinkText' : 'Selector');
       selectors.push(`const ${selector} = '${info.elementSelector}';`);
       declarations.push(`${elementVar}: ${elementType} = null;`);
       constructorStatements.push(
-        `this.${elementVar} = ${elementFindMethod}(${byMethod}(${selector}))`
+        `this.${elementVar} = ${elementFindMethod}(${byMethod}(${selector}));`
       );
     });
     const procReplacer = {

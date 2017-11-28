@@ -45,14 +45,13 @@ describe('protractor-typescript:po', () => {
           const elementVar = strings.firstToLower(elementName);
           const byMethod = selectorType === 'by css' ? 'by.css' : 'by.linkText';
           const selector =
-            strings.capitalize(elementName) + selectorType === 'by css'
-              ? 'Selector'
-              : 'LinkText';
+            strings.capitalize(elementName) +
+            (selectorType === 'by css' ? 'Selector' : 'LinkText');
           assert.fileContent(filePath, `const ${selector} = '${elementSelector}';`);
           assert.fileContent(filePath, `${elementVar}: ${elementType} = null;`);
           assert.fileContent(
             filePath,
-            `this.${elementVar} = ${elementFindMethod}(${byMethod}(${selector}))`
+            `this.${elementVar} = ${elementFindMethod}(${byMethod}(${selector}));`
           );
         } else {
           assert.fileContent(filePath, '/* Elements Selector */');
