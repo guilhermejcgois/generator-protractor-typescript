@@ -1,4 +1,6 @@
 # generator-protractor-typescript [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/guilhermejcgois/generator-protractor-typescript.svg)](https://greenkeeper.io/)
 > Generator for typescript projects that uses Protractor. Protractor is an end-to-end test framework for Angular and AngularJS applications. Protractor runs tests against your application running in a real browser, interacting with it as a user would.
 
 Table of Contents
