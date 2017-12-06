@@ -72,5 +72,8 @@
     "plugins": ["prettier"]
   },
   "repository": "guilhermejcgois/generator-protractor-typescript",
-  "license": "MIT"
+  "license": "MIT",
+  "greenkeeper": {
+    "ignore": ["nsp"]
+  }
 }
