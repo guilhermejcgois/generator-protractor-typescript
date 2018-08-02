@@ -6,6 +6,7 @@ branches:
   only:
   - master
   - "/^greenkeeper/.*$/"
+  - "/^v/.*$/"
 after_script: cat ./coverage/lcov.info | coveralls
 deploy:
   provider: npm
