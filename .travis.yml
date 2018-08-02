@@ -1,12 +1,17 @@
 language: node_js
-
 node_js:
-  - 7
-  - 6
-  
+- 7
+- 6
 branches:
-    only:
-      - master
-      - /^greenkeeper/.*$/
-
-after_script: 'cat ./coverage/lcov.info | coveralls'
+  only:
+  - master
+  - "/^greenkeeper/.*$/"
+after_script: cat ./coverage/lcov.info | coveralls
+deploy:
+  provider: npm
+  email: guijocargo@gmail.com
+  api_key:
+    secure: XytwBLNl4nrx0Syi0xew/mDnppNk9Hop+SMBL0pEzaAEd+n2x8vV58Z2Gbg/U4mqytJu3HMYp6ybFzY6oqTi6FyvX7Wh07/eVZZuArNN6WE0zsnRyB37i8qcmfTZB7Osmn6PpCPZlA1AP2OcgqpmlJkgng/vgPxQpdWVWJKsWsGvCiXi6NCvR3IN/SvFEvVO5oBg1vUSOz780/HoG5uXnZbY4mtulVjc4vHgNqrvaeu5YM+Hp85FiBAuBdW3lzw/b25H+hzMprXV9MxqLaJBO1vcHgR9lUZtiNYxvRMjWPe4G80fQOQ6edVVHIcfCIaF0vSVBVCU2xFYXfilp7iKo4cedhrRJRXruf3zxJ16noxZgx0QWEBih9E0vhMKYKSfWzsNBauRvPMehGBnJGYhGKanUrtXeRRDfPAACK0N12G47a8lDRJH73ftoE3tHh8YUXlMrAGdL4VhDLiZCeTFgNfnBsV5bM4+sLTKLoj4Sy4wnI4N7nuHCN35Gt7iRn7hokQUoV9EaXuv62WkuRTYovScSDdJLJYwQ/2MHugwAQfqaYHzTF2LJsqWv1x/RPjdqLN1T6OCDuggmO/0kHrFxL8fbzPNYqkYYSJ9SLUqQv9gfo96rCdH3+O2Ww2EksJHypBYJOaME3kCkWGhX8ZWT0fT6X1cTuItGL17MPDlOvY=
+  on:
+    tags: true
+    repo: guilhermejcgois/generator-protractor-typescript
