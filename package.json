@@ -1,15 +1,16 @@
 {
   "name": "generator-protractor-typescript",
-  "version": "0.0.0",
-  "description":
-    "Generator for typescript projects that uses Protractor. Protractor is an end-to-end test framework for Angular and AngularJS applications. Protractor runs tests against your application running in a real browser, interacting with it as a user would.",
+  "version": "0.0.1",
+  "description": "Generator for typescript projects that uses Protractor. Protractor is an end-to-end test framework for Angular and AngularJS applications. Protractor runs tests against your application running in a real browser, interacting with it as a user would.",
   "homepage": "",
   "author": {
     "name": "Guilherme Gois",
     "email": "guijocargo@gmail.com",
     "url": ""
   },
-  "files": ["generators"],
+  "files": [
+    "generators"
+  ],
   "main": "generators/index.js",
   "keywords": [
     "yeoman-generator",
@@ -41,7 +42,9 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "coveragePathIgnorePatterns": ["/helpers/"]
+    "coveragePathIgnorePatterns": [
+      "/helpers/"
+    ]
   },
   "scripts": {
     "prepublish": "nsp check",
@@ -51,11 +54,20 @@
     "test": "jest --coverage"
   },
   "lint-staged": {
-    "*.js": ["eslint --fix", "git add"],
-    "*.json": ["prettier --write", "git add"]
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "eslintConfig": {
-    "extends": ["xo", "prettier"],
+    "extends": [
+      "xo",
+      "prettier"
+    ],
     "env": {
       "jest": true,
       "node": true
@@ -69,11 +81,17 @@
         }
       ]
     },
-    "plugins": ["prettier"]
+    "plugins": [
+      "prettier"
+    ]
   },
   "repository": "guilhermejcgois/generator-protractor-typescript",
   "license": "MIT",
   "greenkeeper": {
-    "ignore": ["jest", "jest-cli", "nsp"]
+    "ignore": [
+      "jest",
+      "jest-cli",
+      "nsp"
+    ]
   }
 }
