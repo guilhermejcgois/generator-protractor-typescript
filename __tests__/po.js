@@ -18,16 +18,16 @@ describe('protractor-typescript:po', () => {
   };
 
   const spec = answers => () => {
+    const fileName = (answers && answers.fileName) || defAnswers.fileName;
+    const className = (answers && answers.className) || defAnswers.className;
+    const location = (answers && answers.location) || defAnswers.location;
+    const addElement = (answers && answers.addElement) || defAnswers.addElement;
+    const filePath = location + fileName + '.ts';
+
     return helpers
       .run(path.join(__dirname, '../generators/po'))
       .withPrompts(answers || {})
       .then(() => {
-        const fileName = (answers && answers.fileName) || defAnswers.fileName;
-        const className = (answers && answers.className) || defAnswers.className;
-        const location = (answers && answers.location) || defAnswers.location;
-        const addElement = (answers && answers.addElement) || defAnswers.addElement;
-        const filePath = location + fileName + '.ts';
-
         assert.file(filePath);
         assert.fileContent(filePath, `export class ${className}Page {`);
 
