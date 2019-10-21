@@ -98,6 +98,7 @@ module.exports = class extends Generator {
           return this.prompt(prompts.loop).then(loopThen);
         }
       };
+
       return loopPrompt.then(loopThen);
     });
   }
